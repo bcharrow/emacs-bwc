@@ -5,10 +5,10 @@
 (setq-default indent-tabs-mode nil) ; indent with spaces instead of tabs
 
 (column-number-mode t)              ; Display column numbers
-(setq-default fill-column 72)       ; Column width = 79
+(setq-default fill-column 79)       ; Column width = 79
 
 ;; new font
-(set-default-font "Droid Sans Mono 10")
+(set-frame-font "Droid Sans Mono 8")
 ;; (setq default-frame-alist '((font-backend . "xft")
 ;;                             (font . "Droid Sans Mono 10")
 ;;                             (cursor-color . "white")))
@@ -79,11 +79,10 @@
   (split-window-horizontally))
 
 ;=============================== KEY BINDINGS ================================;
-(global-set-key "\C-xg" 'goto-line)
 (global-set-key [f7] 'save-buffer)
 (global-set-key [f9] 'compile)
-(global-set-key [f11] 'fullscreen)
-(global-set-key [f12] 'split-quads)
+(global-set-key [f5] 'fullscreen)
+(global-set-key [f6] 'split-quads)
 (global-set-key "\C-ci" 'insert-header)
 
 ;================================== COMPILE ==================================;

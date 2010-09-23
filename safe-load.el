@@ -9,7 +9,7 @@
       (progn
        (setq safe-load-error-list  (concat safe-load-error-list  " " file))
        (message "****** [Return to continue] Error loading %s" safe-load-error-list )
-        (sleep-for 3)
+        (sleep-for 1)
        nil))))
 (defun safe-load-check ()
  "Check for any previous safe-load loading errors.  (safe-load.el)"
