@@ -1,21 +1,16 @@
 ;=============================== GENERIC EMACS ===============================;
-
 (setq make-backup-files nil)        ; Disable backups
-(tool-bar-mode -1)                  ; hide the tool bar
+(safe-apply 'tool-bar-mode '(-1))   ; hide the tool bar
 (setq-default indent-tabs-mode nil) ; indent with spaces instead of tabs
-
+(setq ns-antialias-text nil)        ; disable anti-aliasing
 (column-number-mode t)              ; Display column numbers
 (setq-default fill-column 79)       ; Column width = 79
 
 ;; new font
-(set-frame-font "Droid Sans Mono 8")
-;; (setq default-frame-alist '((font-backend . "xft")
-;;                             (font . "Droid Sans Mono 10")
-;;                             (cursor-color . "white")))
+(set-frame-font "Monaco 10")
 ;; feel vim users pain!
 ;; (setq-default show-trailing-whitespace f)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 ;=================================== MODES ===================================;
 (require 'ido)
 (ido-mode t)
@@ -43,8 +38,9 @@
 (defun insert-header (header)
   "Inserts a comment header at the current point.
 
-   Note that. 'comment-end and 'comment-start' specified by the current major
-   mode.  Also, 'fill-column' to determine the total width of the header"
+Note that. 'comment-end and 'comment-start' specified by the
+current major mode.  Also, 'fill-column' to determine the total
+width of the header"
   (interactive "sEnter header: ")
 
   ;; Copied from newcomment.el; ask user specify comment syntax if none exists
@@ -80,9 +76,7 @@
 
 ;=============================== KEY BINDINGS ================================;
 (global-set-key [f7] 'save-buffer)
-(global-set-key [f9] 'compile)
-(global-set-key [f5] 'fullscreen)
-(global-set-key [f6] 'split-quads)
+(global-set-key [f8] 'compile)
 (global-set-key "\C-ci" 'insert-header)
 
 ;================================== COMPILE ==================================;

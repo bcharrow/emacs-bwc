@@ -16,3 +16,7 @@
   (interactive)
   (if (string-equal safe-load-error-list "") ()
                (message (concat "****** error loading: " safe-load-error-list))))
+
+(defun safe-apply (fn args)
+  (if (fboundp fn)
+      (apply fn args)))
