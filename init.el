@@ -36,7 +36,7 @@
 (load-file "~/.emacs.d/safe-load.el")
 ;(safe-load "~/.emacs.d/vendor/auto-complete.el")
 (safe-load "~/.emacs.d/bcharrow-standard.el" nil t)
-;(safe-load "~/.emacs.d/bcharrow-python.el" nil t)
+(safe-load "~/.emacs.d/bcharrow-python.el" nil t)
 (safe-load "~/.emacs.d/bcharrow-c.el" nil t)
 (safe-load "~/.emacs.d/bcharrow-cpp.el" nil t)
 (safe-load "~/.emacs.d/bcharrow-matlab.el" nil t)
