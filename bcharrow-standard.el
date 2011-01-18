@@ -18,10 +18,15 @@
 (auto-fill-mode t) ;; have things automatically wrap
 
 ;;; Tramp tips obtained from http://www.emacswiki.org/emacs/TrampMode
-(setq tramp-default-method "ssh")
+(setq tramp-default-method "rsyncc")
 
-;; disable vc-svn
+;;
+(setq remote-shell-program "/usr/bin/ssh")
+(setq remote-compile-host "guppy")
+
+;; disable vc
 (defun vc-svn-registered (file) nil)
+(defun vc-git-registered (file) nil)
 
 ;;; Easy movement between windows with 'windows' key + arrow
 (require 'windmove)
@@ -65,7 +70,7 @@ width of the header"
                                     2)
                                  ?=)))
     (insert (concat start equal-str body filler equal-str end "\n"))))
-(global-set-key "\C-ci" 'insert-header) ;; bind the function
+
 
 (defun split-quads ()
   (interactive)
@@ -74,10 +79,16 @@ width of the header"
   (other-window 2)
   (split-window-horizontally))
 
+(defun standard-resize()
+  (interactive)
+  (set-frame-size (selected-frame) 80 50))
+
 ;=============================== KEY BINDINGS ================================;
-(global-set-key [f7] 'save-buffer)
-(global-set-key [f8] 'compile)
-(global-set-key "\C-ci" 'insert-header)
+;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
+(global-set-key (kbd "<f7>") 'save-buffer)
+(global-set-key (kbd "<f8>") 'compile)
+(global-set-key (kbd "C-c i") 'insert-header)
+(global-set-key (kbd "<ESC> <RET>") 'standard-resize)
 
 ;================================== COMPILE ==================================;
 (setq compilation-window-height 8) ;; comp window only takes up 8 rows
@@ -89,3 +100,6 @@ width of the header"
 ;;           ;;no errors, make the compilation window go away in 0.5 seconds
 ;;           (run-at-time 0.5 nil 'kill-buffer buf)
 ;;           (message "Compiled succesfully"))))
+
+;============================= File Associations =============================;
+(setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
