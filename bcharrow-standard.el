@@ -36,7 +36,12 @@
 (require 'windmove)
 (windmove-default-keybindings 'super)
 
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
 
+(require 'magit)
 ;============================= CUSTOM FUNCTIONS ==============================;
 ;; Fullscreen editing
 (defun fullscreen ()
