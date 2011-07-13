@@ -10,7 +10,7 @@
 (set-frame-font "Monaco 10")
 ;; feel vim users pain!
 ;; (setq-default show-trailing-whitespace f)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;=================================== MODES ===================================;
 (require 'ido)
 (ido-mode t)
@@ -20,7 +20,11 @@
 ;;; Tramp tips obtained from http://www.emacswiki.org/emacs/TrampMode
 (setq tramp-default-method "rsyncc")
 
-;;
+; Check disk for changes to buffers every 2s
+(global-auto-revert-mode t)
+(setq auto-revert-interval 2)
+(auto-revert-set-timer)
+
 (setq remote-shell-program "/usr/bin/ssh")
 (setq remote-compile-host "guppy")
 
