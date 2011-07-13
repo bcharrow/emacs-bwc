@@ -1,3 +1,6 @@
 [submodule "vendor/full-ack"]
 	path = vendor/full-ack
 	url = https://github.com/nschum/full-ack.git
+[submodule "vendor/magit"]
+	path = vendor/magit
+	url = https://github.com/magit/magit.git
