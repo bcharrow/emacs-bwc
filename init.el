@@ -41,6 +41,7 @@
 (safe-load "~/.emacs.d/bcharrow-cpp.el" nil t)
 (safe-load "~/.emacs.d/bcharrow-matlab.el" nil t)
 (safe-load "~/.emacs.d/bcharrow-latex.el" nil t)
+(safe-load "~/.emacs.d/bcharrow-java.el" nil t)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
