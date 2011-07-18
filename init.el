@@ -31,7 +31,9 @@
                             :strike-through nil
                             :overline nil
                             :underline nil
-                            :slant normal))) t))))
+                            :slant normal))) t)
+             '(magit-item-highlight ((((class color) (background dark))
+                                      (:background "gray13")))))))
 
 (load-file "~/.emacs.d/safe-load.el")
 ;(safe-load "~/.emacs.d/vendor/auto-complete.el")
