@@ -127,3 +127,9 @@ embedded in it"
           (lambda()
             (define-key LaTeX-mode-map "\C-cp"
               (lambda () (interactive) (insert "$$\\includegraphics{placeholder}$$")))))
+
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (concat "rubber -d "
+                         (file-name-nondirectory buffer-file-name)))))
