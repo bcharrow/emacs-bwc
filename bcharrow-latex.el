@@ -112,9 +112,9 @@ embedded in it"
 ;  (yas/load-directory "~/.emacs.d/snippets"))
 ;(add-hook 'LaTeX-mode-hook 'load-ysnippet)
 
-(add-hook 'LaTeX-mode-hook
-          (lambda()
-            (define-key LaTeX-mode-map "\r" 'newline-and-indent)))
+;; (add-hook 'LaTeX-mode-hook
+;;           (lambda()
+;;             (define-key LaTeX-mode-map "\r" 'newline-and-indent)))
 
 (add-hook 'LaTeX-mode-hook (lambda () (visual-line-mode 1)))
 (add-hook 'LaTeX-mode-hook (lambda () (auto-fill-mode -1)))

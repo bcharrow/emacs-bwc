@@ -8,3 +8,4 @@
             (define-key c++-mode-map "\r" 'newline-and-indent)))
 
 (setq c-basic-offset 4)
+(setq tab-width 4)

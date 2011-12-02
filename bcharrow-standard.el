@@ -44,6 +44,7 @@
 (require 'magit)
 (eval-after-load 'magit
   '(progn
+     (global-set-key (kbd "<f7>") 'magit-status)
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")
      (when (not window-system)
@@ -100,7 +101,6 @@ width of the header"
 
 ;=============================== KEY BINDINGS ================================;
 ;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
-(global-set-key (kbd "<f7>") 'save-buffer)
 (global-set-key (kbd "<f8>") 'compile)
 (global-set-key (kbd "C-c i") 'insert-header)
 (global-set-key (kbd "<ESC> <RET>") 'standard-resize)
