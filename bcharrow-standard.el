@@ -1,13 +1,20 @@
 ;=============================== GENERIC EMACS ===============================;
 (setq make-backup-files nil)        ; Disable backups
-(safe-apply 'tool-bar-mode '(-1))   ; hide the tool bar
+(safe-apply 'tool-bar-mode '(-1))   ; hide the {tool,scroll,menu} bar
+(safe-apply 'menu-bar-mode '(-1)) 
+(safe-apply 'scroll-bar-mode '(-1)) 
 (setq-default indent-tabs-mode nil) ; indent with spaces instead of tabs
-(setq ns-antialias-text nil)        ; disable anti-aliasing
 (column-number-mode t)              ; Display column numbers
 (setq-default fill-column 79)       ; Column width = 79
 
 ;; new font
-(set-frame-font "Monaco 10")
+(cond                               ; disable anti-aliasing on MAC
+ ((equal "darwin" system-type) 
+  (progn
+   (setq ns-antialias-text nil)
+   (set-frame-font "Monaco-10")))
+ (t
+  (set-frame-font "Droid Sans Mono-10")))
 ;; feel vim users pain!
 ;; (setq-default show-trailing-whitespace f)
 ; (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -26,7 +33,6 @@
 (auto-revert-set-timer)
 
 (setq remote-shell-program "/usr/bin/ssh")
-(setq remote-compile-host "guppy")
 
 ;; disable vc
 (defun vc-svn-registered (file) nil)

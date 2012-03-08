@@ -1,8 +1,12 @@
 #!/bin/bash
+set -o nounset
+set -o errexit
 
-# Run setup emacs on a machine.
+# Get submodules
+git submodule init
+git submodule update
 
-cd rope && python setup.py build
-cd ropemacs && python setup.py build
-
-sudo apt-get install pyflakes
+# Install Droid fonts on Linux
+if [[ `uname` == "Linux" ]]; then
+    sudo apt-get install ttf-droid
+fi
