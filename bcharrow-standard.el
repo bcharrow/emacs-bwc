@@ -118,3 +118,10 @@ width of the header"
 
 ;============================= File Associations =============================;
 (setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
+
+;=============================== AUTOCOMPLETE ================================;
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/ac-dict")
+(ac-config-default)
+(setq ac-auto-start nil)
+(ac-set-trigger-key "TAB")
