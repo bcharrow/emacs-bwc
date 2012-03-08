@@ -16,37 +16,22 @@
  '(inhibit-startup-screen t)
  '(show-paren-mode t nil (paren)))
 
-(set 'default-faces
-      (cond
-       ((equal "darwin" system-type) 
-	'(default ((t (:background "0x000000"
-                       :foreground "gray"
-                       :inverse-video nil
-                       :box nil
-                       :strike-through nil
-                       :overline nil
-                       :antialias nil
-                       :underline nil
-                       :slant normal))) t))
-       (t
-        '(default ((t (:background "black"
-                       :foreground "gray"
-                       :inverse-video nil
-                       :box nil
-                       :strike-through nil
-                       :overline nil
-                       :antialias nil
-                       :underline nil
-                       :slant normal))) t))))
-
 (add-hook 'term-setup-hook
           (lambda ()
-            (custom-set-faces             
+            (custom-set-faces
+
              ;; custom-set-faces was added by Custom.
              ;; If you edit it by hand, you could mess it up, so be careful.
              ;; Your init file should contain only one such instance.
              ;; If there is more than one, they won't work right.
-             default-faces
+             '(default ((t (:background "black"
+                            :foreground "gray"
+                            :inverse-video nil
+                            :box nil
+                            :strike-through nil
+                            :overline nil
+                            :underline nil
+                            :slant normal))) t)
              '(magit-item-highlight ((((class color) (background dark))
                                       (:background "gray13")))))))
 
