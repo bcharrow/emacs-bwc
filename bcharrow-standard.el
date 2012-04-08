@@ -17,6 +17,8 @@
 ;; (setq-default show-trailing-whitespace f)
 ; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;=================================== MODES ===================================;
+(require 'doxymacs)
+
 (require 'ido)
 (ido-mode t)
 

@@ -3,6 +3,8 @@
           (lambda()
             (define-key c-mode-map "\r" 'newline-and-indent)))
 
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
+
 (add-hook 'c++-mode-hook
           (lambda()
             (define-key c++-mode-map "\r" 'newline-and-indent)))
