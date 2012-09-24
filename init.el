@@ -9,12 +9,14 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(ack-project-root-file-patterns (quote (".project\\'" ".xcodeproj\\'" ".sln\\'" "\\`Project.ede\\'" "\\`.git\\'" "\\`.bzr\\'" "\\`_darcs\\'" "\\`.hg\\'")))
  '(case-fold-search t)
  '(column-number-mode t)
  '(current-language-environment "English")
  '(global-font-lock-mode t nil (font-lock))
  '(inhibit-startup-screen t)
- '(show-paren-mode t nil (paren)))
+ '(show-paren-mode t nil (paren))
+ '(tex-suscript-height-ratio 0.9))
 
 (add-hook 'term-setup-hook
           (lambda ()

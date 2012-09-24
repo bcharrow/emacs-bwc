@@ -7,6 +7,8 @@
 (column-number-mode t)              ; Display column numbers
 (setq-default fill-column 79)       ; Column width = 79
 
+(set-cursor-color "gray")
+
 ;; new font
 (if (equal 'darwin system-type)
     (progn
@@ -103,7 +105,7 @@ width of the header"
 
 (defun standard-resize()
   (interactive)
-  (set-frame-size (selected-frame) 80 50))
+  (set-frame-size (selected-frame) 165 80))
 
 ;=============================== KEY BINDINGS ================================;
 ;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
@@ -124,10 +126,12 @@ width of the header"
 
 ;============================= File Associations =============================;
 (setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.cu" . c-mode) auto-mode-alist))
 
 ;=============================== AUTOCOMPLETE ================================;
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/ac-dict")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
 (ac-config-default)
 (setq ac-auto-start nil)
 (ac-set-trigger-key "TAB")
