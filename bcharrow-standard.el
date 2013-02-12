@@ -14,7 +14,8 @@
     (progn
       (setq ns-antialias-text nil)
       (set-frame-font "Monaco 10"))
-  (set-frame-font "Droid Sans Mono-10"))
+  (set-frame-font "Monaco 10"))
+
 ;; feel vim users pain!
 ;; (setq-default show-trailing-whitespace f)
 ; (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -48,6 +49,9 @@
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
+
+(add-to-list 'auto-mode-alist '("\\.h$" . dummy-h-mode))
+(autoload 'dummy-h-mode "dummy-h-mode" "Dummy H mode" t)
 
 (require 'magit)
 (eval-after-load 'magit
