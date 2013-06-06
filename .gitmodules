@@ -1,9 +1,0 @@
-[submodule "vendor/magit"]
-	path = vendor/magit
-	url = https://github.com/magit/magit.git
-[submodule "vendor/auto-complete"]
-	path = vendor/auto-complete
-	url = http://github.com/m2ym/auto-complete
-[submodule "vendor/doxymacs"]
-	path = vendor/doxymacs
-	url = git://doxymacs.git.sourceforge.net/gitroot/doxymacs/doxymacs

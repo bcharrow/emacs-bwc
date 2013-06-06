@@ -35,10 +35,35 @@
                             :underline nil
                             :slant normal))) t)
              '(magit-item-highlight ((((class color) (background dark))
-                                      (:background "gray13")))))))
+                                      (:background "gray10"))))
+             '(magit-item-highlight ((((class color) (background dark))
+                                      (:background "gray10"))))
+             '(diff-removed 
+               ((t (:inherit diff-changed :background "gray20"))))
+             '(diff-removed-face 
+               ((t (:inherit diff-changed :background "gray20"))) t)
+             '(diff-added 
+               ((t (:inherit diff-changed :background "gray20"))))
+             '(diff-added-face 
+               ((t (:inherit diff-changed :background "gray20"))) t)
+             '(diff-file-header 
+               ((t (:inherit diff-changed :background "gray35"))))
+             '(diff-file-header-face 
+               ((t (:inherit diff-changed :background "gray35"))) t)
+             '(diff-header 
+               ((t (:inherit diff-changed :background "gray25"))))
+             '(diff-header-face 
+               ((t (:inherit diff-changed :background "gray25"))) t)
+             )))
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  )
+
 
 (load-file "~/.emacs.d/safe-load.el")
-;(safe-load "~/.emacs.d/vendor/auto-complete.el")
 (safe-load "~/.emacs.d/bcharrow-standard.el" nil t)
 (safe-load "~/.emacs.d/bcharrow-python.el" nil t)
 (safe-load "~/.emacs.d/bcharrow-c.el" nil t)
