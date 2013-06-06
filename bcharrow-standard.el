@@ -1,7 +1,20 @@
+;============================== Load Utilities ===============================;
+; Only apply a function if the function is defined
+(defun safe-apply (fn args)
+  (if (fboundp fn)
+      (apply fn args)))
+
+;================================= Packages ==================================;
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.milkbox.net/packages/") t))
+
 ;=============================== GENERIC EMACS ===============================;
 (setq make-backup-files nil)        ; Disable backups
 (safe-apply 'tool-bar-mode '(-1))   ; hide the {tool,scroll,menu} bar
-(safe-apply 'menu-bar-mode '(-1)) 
+(safe-apply 'menu-bar-mode '(-1))
 (safe-apply 'scroll-bar-mode '(-1))
 (setq-default indent-tabs-mode nil) ; indent with spaces instead of tabs
 (column-number-mode t)              ; Display column numbers
@@ -20,8 +33,6 @@
 ;; (setq-default show-trailing-whitespace f)
 ; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;=================================== MODES ===================================;
-(require 'doxymacs)
-
 (require 'ido)
 (ido-mode t)
 
@@ -41,26 +52,9 @@
 (defun vc-svn-registered (file) nil)
 (defun vc-git-registered (file) nil)
 
-;;; Easy movement between windows with 'windows' key + arrow
-(require 'windmove)
-(windmove-default-keybindings 'super)
-
-(autoload 'ack-same "full-ack" nil t)
-(autoload 'ack "full-ack" nil t)
-(autoload 'ack-find-same-file "full-ack" nil t)
-(autoload 'ack-find-file "full-ack" nil t)
-
 (add-to-list 'auto-mode-alist '("\\.h$" . dummy-h-mode))
 (autoload 'dummy-h-mode "dummy-h-mode" "Dummy H mode" t)
 
-(require 'magit)
-(eval-after-load 'magit
-  '(progn
-     (global-set-key (kbd "<f7>") 'magit-status)
-     (set-face-foreground 'magit-diff-add "green3")
-     (set-face-foreground 'magit-diff-del "red3")
-     (when (not window-system)
-       (set-face-background 'magit-item-highlight "black"))))
 ;============================= CUSTOM FUNCTIONS ==============================;
 ;; Fullscreen editing
 (defun fullscreen ()
@@ -111,14 +105,8 @@ width of the header"
   (interactive)
   (set-frame-size (selected-frame) 165 80))
 
-;=============================== KEY BINDINGS ================================;
-;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
-(global-set-key (kbd "<f8>") 'compile)
-(global-set-key (kbd "C-c i") 'insert-header)
-(global-set-key (kbd "<ESC> <RET>") 'standard-resize)
-
-;================================== COMPILE ==================================;
-(setq compilation-window-height 8) ;; comp window only takes up 8 rows
+;================================ Compilation ================================;
+(setq compilation-window-height 14) ;; comp window only takes up 8 rows
 ;; (setq compilation-finish-function  ;; close comp window if successfully compile
 ;;       (lambda (buf str)
 ;;         (if (string-match "exited abnormally" str)
@@ -132,10 +120,57 @@ width of the header"
 (setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cu" . c-mode) auto-mode-alist))
 
-;=============================== AUTOCOMPLETE ================================;
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/ac-dict")
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
-(ac-config-default)
-(setq ac-auto-start nil)
-(ac-set-trigger-key "TAB")
+;=============================== KEY BINDINGS ================================;
+;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
+(global-set-key (kbd "<f6>") 'delete-trailing-whitespace)
+(global-set-key (kbd "<f8>") 'compile)
+(global-set-key (kbd "C-c i") 'insert-header)
+(global-set-key (kbd "<ESC> <RET>") 'standard-resize)
+
+;=================================== C/C++ ===================================;
+(require 'cc-mode)
+(add-hook 'c-mode-hook
+          (lambda()
+            (define-key c-mode-map "\r" 'newline-and-indent)))
+
+(add-hook 'c++-mode-hook
+          (lambda()
+            (define-key c++-mode-map "\r" 'newline-and-indent)))
+
+(setq c-basic-offset 2)
+(setq tab-width 2)
+
+;================================== Python ===================================;
+(require 'python)
+(add-hook 'python-mode-hook
+          (lambda()
+            (define-key python-mode-map "\r" 'newline-and-indent)))
+(define-key python-mode-map "\C-cp"
+  (lambda () (interactive) (insert "import pdb; pdb.set_trace()")))
+
+;=================================== Latex ===================================;
+(add-hook 'LaTeX-mode-hook (lambda () (visual-line-mode 1)))
+(add-hook 'LaTeX-mode-hook (lambda () (auto-fill-mode -1)))
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (concat "rubber -d "
+                         (file-name-nondirectory buffer-file-name)))))
+
+;=================================== Magit ===================================;
+(require 'magit)
+(eval-after-load 'magit
+  '(progn
+     (global-set-key (kbd "<f7>") 'magit-status)
+     (set-face-foreground 'magit-diff-add "green3")
+     (set-face-foreground 'magit-diff-del "red3")
+     (when (not window-system)
+       (set-face-background 'magit-item-highlight "black"))))
+
+;================================= yaml-mode =================================;
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
+(add-hook 'yaml-mode-hook
+          '(lambda ()
+             (define-key yaml-mode-map "\C-m" 'newline-and-indent)))

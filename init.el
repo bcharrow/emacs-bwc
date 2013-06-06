@@ -1,4 +1,4 @@
-;(add-to-list 'load-path "~/.emacs.d/vendor")
+; Add vendor directory to path
 (progn (let ((dir default-directory))
 	 (cd "~/.emacs.d/vendor")
 	 (normal-top-level-add-subdirs-to-load-path)
@@ -56,21 +56,9 @@
                ((t (:inherit diff-changed :background "gray25"))) t)
              )))
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  )
 
+(load-file "~/.emacs.d/bcharrow-standard.el")
 
-(load-file "~/.emacs.d/safe-load.el")
-(safe-load "~/.emacs.d/bcharrow-standard.el" nil t)
-(safe-load "~/.emacs.d/bcharrow-python.el" nil t)
-(safe-load "~/.emacs.d/bcharrow-c.el" nil t)
-(safe-load "~/.emacs.d/bcharrow-cpp.el" nil t)
-(safe-load "~/.emacs.d/bcharrow-matlab.el" nil t)
-(safe-load "~/.emacs.d/bcharrow-latex.el" nil t)
-(safe-load "~/.emacs.d/bcharrow-java.el" nil t)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)

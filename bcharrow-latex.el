@@ -101,35 +101,3 @@ embedded in it"
   "Put region into an eqalignno environment"
   (interactive)
   (insert (concat "$$\\eqalignno{\n" (extract-region) "\n}$$")))
-
-
-;=================================== Hooks ===================================;
-;(require 'yasnippet)
-
-;(defun load-ysnippet ()
-;  (interactive)
-;  (yas/initialize)
-;  (yas/load-directory "~/.emacs.d/snippets"))
-;(add-hook 'LaTeX-mode-hook 'load-ysnippet)
-
-;; (add-hook 'LaTeX-mode-hook
-;;           (lambda()
-;;             (define-key LaTeX-mode-map "\r" 'newline-and-indent)))
-
-(add-hook 'LaTeX-mode-hook (lambda () (visual-line-mode 1)))
-(add-hook 'LaTeX-mode-hook (lambda () (auto-fill-mode -1)))
-(add-hook 'LaTeX-mode-hook
-          (lambda()
-            (local-set-key "\C-b" 'fix-word-text)
-            (local-set-key "\C-n" 'fix-word-math)
-            (local-set-key "\C-c p" (lambda () (insert "")))))
-(add-hook 'LaTeX-mode-hook
-          (lambda()
-            (define-key LaTeX-mode-map "\C-cp"
-              (lambda () (interactive) (insert "$$\\includegraphics{placeholder}$$")))))
-
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (set (make-local-variable 'compile-command)
-                 (concat "rubber -d "
-                         (file-name-nondirectory buffer-file-name)))))
