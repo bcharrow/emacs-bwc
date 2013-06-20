@@ -116,6 +116,13 @@ width of the header"
 ;;           (run-at-time 0.5 nil 'kill-buffer buf)
 ;;           (message "Compiled succesfully"))))
 
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;============================= File Associations =============================;
 (setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cu" . c-mode) auto-mode-alist))
