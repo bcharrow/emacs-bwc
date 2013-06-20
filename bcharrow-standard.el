@@ -105,6 +105,11 @@ width of the header"
   (interactive)
   (set-frame-size (selected-frame) 165 80))
 
+(defun sman()
+  (interactive)
+  (other-window 1)
+  (call-interactively 'man))
+
 ;================================ Compilation ================================;
 (setq compilation-window-height 14) ;; comp window only takes up 8 rows
 ;; (setq compilation-finish-function  ;; close comp window if successfully compile
