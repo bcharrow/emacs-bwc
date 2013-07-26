@@ -110,6 +110,26 @@ width of the header"
   (other-window 1)
   (call-interactively 'man))
 
+(defadvice pop-to-buffer (before cancel-other-window first)
+  (ad-set-arg 1 nil))
+
+(ad-activate 'pop-to-buffer)
+
+;; Toggle window dedication
+(defun toggle-window-dedicated ()
+  "Toggle whether the current active window is dedicated or not"
+  (interactive)
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window
+                                 (not (window-dedicated-p window))))
+       "Window '%s' is dedicated"
+     "Window '%s' is normal")
+   (current-buffer)))
+
+;; Press [pause] key in each window you want to "freeze"
+(global-set-key (kbd "<f9>") 'toggle-window-dedicated)
+
 ;================================ Compilation ================================;
 (setq compilation-window-height 14) ;; comp window only takes up 8 rows
 ;; (setq compilation-finish-function  ;; close comp window if successfully compile
@@ -120,6 +140,9 @@ width of the header"
 ;;           ;;no errors, make the compilation window go away in 0.5 seconds
 ;;           (run-at-time 0.5 nil 'kill-buffer buf)
 ;;           (message "Compiled succesfully"))))
+
+(setq compilation-scroll-output t)
+(setq compilation-auto-jump-to-first-error t)
 
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
