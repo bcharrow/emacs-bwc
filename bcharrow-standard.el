@@ -199,6 +199,8 @@ width of the header"
      (global-set-key (kbd "<f7>") 'magit-status)
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")
+     (add-hook 'magit-log-edit-mode-hook
+               '(lambda () (setq fill-column 74) (auto-fill-mode t)))
      (when (not window-system)
        (set-face-background 'magit-item-highlight "black"))))
 
