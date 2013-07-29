@@ -28,10 +28,10 @@
       (setq ns-antialias-text nil)
       (set-frame-font "Monaco 10"))
   (set-frame-font "Monaco 10"))
+; Make it unlikely that windows are split automatically
+(setq split-height-threshold nil)
+(setq split-width-threshold nil)
 
-;; feel vim users pain!
-;; (setq-default show-trailing-whitespace f)
-; (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;=================================== MODES ===================================;
 (require 'ido)
 (ido-mode t)
@@ -131,16 +131,6 @@ width of the header"
 (global-set-key (kbd "<f9>") 'toggle-window-dedicated)
 
 ;================================ Compilation ================================;
-(setq compilation-window-height 14) ;; comp window only takes up 8 rows
-;; (setq compilation-finish-function  ;; close comp window if successfully compile
-;;       (lambda (buf str)
-;;         (if (string-match "exited abnormally" str)
-;;             ;;there were errors
-;;             (message "compilation errors, press C-x ` to visit")
-;;           ;;no errors, make the compilation window go away in 0.5 seconds
-;;           (run-at-time 0.5 nil 'kill-buffer buf)
-;;           (message "Compiled succesfully"))))
-
 (setq compilation-scroll-output t)
 (setq compilation-auto-jump-to-first-error t)
 
