@@ -37,24 +37,14 @@
                             :slant normal))) t)
              '(magit-item-highlight ((((class color) (background dark))
                                       (:background "gray10"))))
-             '(magit-item-highlight ((((class color) (background dark))
-                                      (:background "gray10"))))
              '(diff-removed 
                ((t (:inherit diff-changed :background "gray20"))))
-             '(diff-removed-face 
-               ((t (:inherit diff-changed :background "gray20"))) t)
              '(diff-added 
                ((t (:inherit diff-changed :background "gray20"))))
-             '(diff-added-face 
-               ((t (:inherit diff-changed :background "gray20"))) t)
              '(diff-file-header 
                ((t (:inherit diff-changed :background "gray35"))))
-             '(diff-file-header-face 
-               ((t (:inherit diff-changed :background "gray35"))) t)
              '(diff-header 
                ((t (:inherit diff-changed :background "gray25"))))
-             '(diff-header-face 
-               ((t (:inherit diff-changed :background "gray25"))) t)
              )))
 
 

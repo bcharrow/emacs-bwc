@@ -27,10 +27,11 @@
     (progn
       (setq ns-antialias-text nil)
       (set-frame-font "Monaco 10"))
-  (set-frame-font "Monaco 10"))
+  (set-frame-font "Dejavu Sans Mono-10"))
+
 ; Make it unlikely that windows are split automatically
 (setq split-height-threshold nil)
-(setq split-width-threshold nil)
+; (setq split-width-threshold 100)
 
 ;=================================== MODES ===================================;
 (require 'ido)
@@ -163,6 +164,7 @@ width of the header"
             (define-key c++-mode-map "\r" 'newline-and-indent)))
 
 (setq c-basic-offset 2)
+(setq c-default-style "linux")
 (setq tab-width 2)
 
 ;================================== Python ===================================;
@@ -201,3 +203,11 @@ width of the header"
 (add-hook 'yaml-mode-hook
           '(lambda ()
              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+;================================= org-mode ==================================;
+(require 'org)
+(add-hook 'org-mode-hook
+          (lambda()
+            (visual-line-mode t)
+            (org-indent-mode t)))
+
