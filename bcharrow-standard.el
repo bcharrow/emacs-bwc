@@ -177,13 +177,14 @@ width of the header"
   (lambda () (interactive) (insert "import pdb; pdb.set_trace()")))
 
 ;=================================== Latex ===================================;
-(add-hook 'LaTeX-mode-hook (lambda () (visual-line-mode 1)))
-(add-hook 'LaTeX-mode-hook (lambda () (auto-fill-mode -1)))
-(add-hook 'LaTeX-mode-hook
+(add-hook 'latex-mode-hook
           (lambda ()
-            (set (make-local-variable 'compile-command)
-                 (concat "rubber -d "
-                         (file-name-nondirectory buffer-file-name)))))
+            (progn
+              (set (make-local-variable 'compile-command)
+                   (concat "rubber -d "
+                           (file-name-nondirectory buffer-file-name)))
+              (visual-line-mode t)
+              )))
 
 ;=================================== Magit ===================================;
 (require 'magit)
