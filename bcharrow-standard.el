@@ -134,6 +134,7 @@ width of the header"
 ;================================ Compilation ================================;
 (setq compilation-scroll-output t)
 (setq compilation-auto-jump-to-first-error t)
+(setq compilation-skip-threshold 2)
 
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
