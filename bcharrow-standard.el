@@ -33,6 +33,15 @@
 (setq split-height-threshold nil)
 ; (setq split-width-threshold 100)
 
+;; save a list of open files in ~/.emacs.desktop
+(desktop-save-mode 1)
+(setq desktop-save 'ask-if-new)
+(setq desktop-globals-to-save
+      (append '((file-name-history        . 100)
+                (query-replace-history    . 60)
+                (compile-history          . 30)
+                )))
+
 ;=================================== MODES ===================================;
 (require 'ido)
 (ido-mode t)
