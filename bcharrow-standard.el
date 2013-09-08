@@ -193,6 +193,7 @@ width of the header"
                    (concat "rubber -d "
                            (file-name-nondirectory buffer-file-name)))
               (visual-line-mode t)
+              (define-key latex-mode-map (kbd "<ESC> <RET>") 'standard-resize)
               )))
 
 ;=================================== Magit ===================================;
