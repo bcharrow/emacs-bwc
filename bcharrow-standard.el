@@ -137,9 +137,6 @@ width of the header"
      "Window '%s' is normal")
    (current-buffer)))
 
-;; Press [pause] key in each window you want to "freeze"
-(global-set-key (kbd "<f9>") 'toggle-window-dedicated)
-
 ;================================ Compilation ================================;
 (setq compilation-scroll-output t)
 (setq compilation-auto-jump-to-first-error t)
@@ -159,9 +156,17 @@ width of the header"
 ;=============================== KEY BINDINGS ================================;
 ;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
 (global-set-key (kbd "<f6>") 'delete-trailing-whitespace)
+(global-set-key (kbd "<f7>") 'magit-status)
+(global-set-key (kbd "<f9>") 'toggle-window-dedicated)
 (global-set-key (kbd "<f8>") 'compile)
 (global-set-key (kbd "C-c i") 'insert-header)
 (global-set-key (kbd "<ESC> <RET>") 'standard-resize)
+
+(require 'windmove)
+(global-set-key (kbd "M-<left>")  'windmove-left)
+(global-set-key (kbd "M-<right>") 'windmove-right)
+(global-set-key (kbd "M-<up>")    'windmove-up)
+(global-set-key (kbd "M-<down>")  'windmove-down)
 
 ;=================================== C/C++ ===================================;
 (require 'cc-mode)
@@ -200,7 +205,6 @@ width of the header"
 (require 'magit)
 (eval-after-load 'magit
   '(progn
-     (global-set-key (kbd "<f7>") 'magit-status)
      (set-face-foreground 'magit-diff-add "green3")
      (set-face-foreground 'magit-diff-del "red3")
      (add-hook 'magit-log-edit-mode-hook
