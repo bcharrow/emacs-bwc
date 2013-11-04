@@ -103,17 +103,25 @@ width of the header"
                                  ?=)))
     (insert (concat start equal-str body filler equal-str end "\n"))))
 
-
-(defun split-quads ()
+(defun standard-frames ()
   (interactive)
-  (split-window-vertically)
+  (delete-other-windows)
+  (compile "")
   (split-window-horizontally)
   (other-window 2)
-  (split-window-horizontally))
+  (shrink-window 1000)
+  (enlarge-window 8)
+  (set-window-dedicated-p (get-buffer-window (current-buffer)) t)
+  (other-window 1))
 
 (defun standard-resize()
   (interactive)
-  (set-frame-size (selected-frame) 165 80))
+  (set-frame-size (selected-frame) 165 (display-pixel-height)))
+
+(defun standard-setup()
+  (interactive)
+  (standard-resize)
+  (standard-frames))
 
 (defun sman()
   (interactive)
@@ -160,7 +168,7 @@ width of the header"
 (global-set-key (kbd "<f9>") 'toggle-window-dedicated)
 (global-set-key (kbd "<f8>") 'compile)
 (global-set-key (kbd "C-c i") 'insert-header)
-(global-set-key (kbd "<ESC> <RET>") 'standard-resize)
+(global-set-key (kbd "<ESC> <RET>") 'standard-setup)
 
 (require 'windmove)
 (global-set-key (kbd "M-<left>")  'windmove-left)
@@ -198,7 +206,7 @@ width of the header"
                    (concat "rubber -d "
                            (file-name-nondirectory buffer-file-name)))
               (visual-line-mode t)
-              (define-key latex-mode-map (kbd "<ESC> <RET>") 'standard-resize)
+              (define-key latex-mode-map (kbd "<ESC> <RET>") 'standard-setup)
               )))
 
 ;=================================== Magit ===================================;
@@ -226,4 +234,3 @@ width of the header"
           (lambda()
             (visual-line-mode t)
             (org-indent-mode t)))
-
