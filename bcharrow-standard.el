@@ -103,8 +103,9 @@ width of the header"
                                  ?=)))
     (insert (concat start equal-str body filler equal-str end "\n"))))
 
-(defun standard-frames ()
+(defun two-frames-compile ()
   (interactive)
+  (set-frame-size (selected-frame) 165 (display-pixel-height))
   (delete-other-windows)
   (compile "")
   (split-window-horizontally)
@@ -114,14 +115,16 @@ width of the header"
   (set-window-dedicated-p (get-buffer-window (current-buffer)) t)
   (other-window 1))
 
-(defun standard-resize()
+(defun one-frame-compile ()
   (interactive)
-  (set-frame-size (selected-frame) 165 (display-pixel-height)))
-
-(defun standard-setup()
-  (interactive)
-  (standard-resize)
-  (standard-frames))
+  (set-frame-size (selected-frame) 80 (display-pixel-height))
+  (delete-other-windows)
+  (compile "")
+  (other-window 1)
+  (shrink-window 1000)
+  (enlarge-window 8)
+  (set-window-dedicated-p (get-buffer-window (current-buffer)) t)
+  (other-window 1))
 
 (defun sman()
   (interactive)
@@ -168,7 +171,8 @@ width of the header"
 (global-set-key (kbd "<f9>") 'toggle-window-dedicated)
 (global-set-key (kbd "<f8>") 'compile)
 (global-set-key (kbd "C-c i") 'insert-header)
-(global-set-key (kbd "<ESC> <RET>") 'standard-setup)
+(global-set-key (kbd "<ESC> <RET>") 'two-frames-compile)
+(global-set-key (kbd "C-<return>") 'one-frame-compile)
 
 (require 'windmove)
 (global-set-key (kbd "M-<left>")  'windmove-left)
@@ -206,7 +210,8 @@ width of the header"
                    (concat "rubber -d "
                            (file-name-nondirectory buffer-file-name)))
               (visual-line-mode t)
-              (define-key latex-mode-map (kbd "<ESC> <RET>") 'standard-setup)
+              (define-key latex-mode-map (kbd "<ESC> <RET>") 'two-frames-compile)
+              (define-key latex-mode-map (kbd "C-<return>") 'one-frame-compile)
               )))
 
 ;=================================== Magit ===================================;
