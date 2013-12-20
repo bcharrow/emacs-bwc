@@ -239,3 +239,10 @@ width of the header"
           (lambda()
             (visual-line-mode t)
             (org-indent-mode t)))
+
+;================================= nxml-mode =================================;
+(require 'mz-comment-fix)
+(add-to-list 'comment-strip-start-length (cons 'nxml-mode 3))
+(add-hook 'nxml-mode-hook
+          '(lambda ()
+             (define-key nxml-mode-map "\r" 'newline-and-indent)))
