@@ -48,9 +48,6 @@
 
 (auto-fill-mode t) ;; have things automatically wrap
 
-;;; Tramp tips obtained from http://www.emacswiki.org/emacs/TrampMode
-(setq tramp-default-method "rsyncc")
-
 ; Check disk for changes to buffers every 2s
 (global-auto-revert-mode t)
 (setq auto-revert-interval 2)
@@ -162,6 +159,7 @@ width of the header"
 
 ;============================= File Associations =============================;
 (setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.world" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cu" . c-mode) auto-mode-alist))
 
 ;=============================== KEY BINDINGS ================================;
@@ -193,6 +191,9 @@ width of the header"
 (setq c-basic-offset 2)
 (setq c-default-style "linux")
 (setq tab-width 2)
+
+;=================================== Text ====================================;
+(add-hook 'text-mode-hook (lambda() (visual-line-mode t)))
 
 ;================================== Python ===================================;
 (require 'python)
@@ -235,6 +236,7 @@ width of the header"
 
 ;================================= org-mode ==================================;
 (require 'org)
+(setq org-startup-folded nil)
 (add-hook 'org-mode-hook
           (lambda()
             (visual-line-mode t)
