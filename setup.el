@@ -7,7 +7,7 @@
 
 (defvar required-packages
   '(markdown-mode protobuf-mode yaml-mode
-    dummy-h-mode magit
+    dummy-h-mode magit yasnippet
     )
   "List of packages needs to be installed at launch")
 

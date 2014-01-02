@@ -256,3 +256,7 @@ width of the header"
 (add-hook 'nxml-mode-hook
           '(lambda ()
              (define-key nxml-mode-map "\r" 'newline-and-indent)))
+
+;================================= yasnippet =================================;
+(require 'yasnippet)
+(yas-global-mode)
