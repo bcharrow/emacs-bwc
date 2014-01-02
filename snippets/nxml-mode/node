@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: node
+# key: node
+# condition: (equal "launch" (file-name-extension (buffer-file-name)))
+# --
+<node name="${1:name}" pkg="${2:package}" type="${3:type}" />

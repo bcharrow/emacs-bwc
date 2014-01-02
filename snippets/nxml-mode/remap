@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: remap
+# key: remap
+# condition: (equal "launch" (file-name-extension (buffer-file-name)))
+# --
+<remap from="${1:from}" to="${2:to}" />

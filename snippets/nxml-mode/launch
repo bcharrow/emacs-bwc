@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: launch
+# key: launch
+# condition: (equal "launch" (file-name-extension (buffer-file-name)))
+# --
+<launch>
+       $0
+</launch>

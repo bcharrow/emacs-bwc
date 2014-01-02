@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: group
+# key: group
+# condition: (equal "launch" (file-name-extension (buffer-file-name)))
+# --
+<group ns="${1:namespace}">
+       $0
+</group>

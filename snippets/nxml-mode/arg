@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: arg
+# key: arg
+# condition: (equal "launch" (file-name-extension (buffer-file-name)))
+# --
+<arg name="${1:name}"${2: default="${3:default}"} />

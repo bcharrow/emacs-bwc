@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: param
+# key: param
+# condition: (equal "launch" (file-name-extension (buffer-file-name)))
+# --
+<param name="${1:param}" value="${2:value}" />

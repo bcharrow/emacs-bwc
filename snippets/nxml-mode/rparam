@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: rparam
+# key: rparam
+# condition: (equal "launch" (file-name-extension (buffer-file-name)))
+# --
+<rosparam file="$(find ${1:package})/${2:path}" command="load" />
