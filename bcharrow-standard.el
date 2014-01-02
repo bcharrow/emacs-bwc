@@ -240,7 +240,15 @@ width of the header"
 (add-hook 'org-mode-hook
           (lambda()
             (visual-line-mode t)
-            (org-indent-mode t)))
+            (org-indent-mode t)
+            (define-key org-mode-map (kbd "<s-left>") 'org-metaleft)
+            (define-key org-mode-map (kbd "<s-right>") 'org-metaright)
+            (define-key org-mode-map (kbd "<s-down>") 'org-metadown)
+            (define-key org-mode-map (kbd "<s-up>") 'org-metaup)
+            (define-key org-mode-map (kbd "M-<left>") nil)
+            (define-key org-mode-map (kbd "M-<right>") nil)
+            (define-key org-mode-map (kbd "M-<down>") nil)
+            (define-key org-mode-map (kbd "M-<up>") nil)))
 
 ;================================= nxml-mode =================================;
 (require 'mz-comment-fix)
