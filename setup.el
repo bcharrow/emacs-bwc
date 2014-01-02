@@ -1,4 +1,4 @@
-; Install packages needed
+; Install / update packages needed
 ; emacs --no-init-file --script setup.el
 (require 'package)
 (package-initialize)
@@ -16,3 +16,11 @@
 (dolist (p required-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+; Update / remove old packages
+(package-menu-mode)
+(setq buffer-read-only nil)
+(package-menu-mark-upgrades)
+(package-menu-mark-obsolete-for-deletion)
+(package-menu-execute)
+(lisp-mode)
