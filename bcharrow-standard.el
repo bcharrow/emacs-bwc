@@ -211,6 +211,9 @@ width of the header"
                    (concat "rubber -d "
                            (file-name-nondirectory buffer-file-name)))
               (visual-line-mode t)
+              (flyspell-mode t)
+              (define-key latex-mode-map (kbd "$")
+                (lambda () (interactive) (insert "$")))
               (define-key latex-mode-map (kbd "<ESC> <RET>") 'two-frames-compile)
               (define-key latex-mode-map (kbd "C-<return>") 'one-frame-compile)
               )))
