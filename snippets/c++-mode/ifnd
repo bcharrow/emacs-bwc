@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ifnd
+# key: ifnd
+# --
+#ifndef ${1:HEADER}
+#define $1
+$0
+#endif // $1
