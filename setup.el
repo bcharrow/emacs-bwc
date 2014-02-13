@@ -6,7 +6,7 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (defvar required-packages
-  '(markdown-mode protobuf-mode yaml-mode
+  '(markdown-mode protobuf-mode yaml-mode multiple-cursors expand-region
     dummy-h-mode magit yasnippet
     )
   "List of packages needs to be installed at launch")

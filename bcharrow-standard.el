@@ -157,12 +157,31 @@ width of the header"
   (toggle-read-only))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+;================================ occur-dwim =================================;
+(require 'thingatpt)
+(defun occur-dwim (arg)
+  "Do What I Mean for `occur'. Requires 'thingatpt.
+
+With an active, nonempty region, runs occur on the contents of
+the region. Otherwise, with a prefix argument, runs occur on the
+word at point. Otherwise behaves like occur."
+  (interactive "P")
+  (let ((regexp (cond ((use-region-p) (buffer-substring-no-properties
+                                       (region-beginning) (region-end)))
+                      (arg (thing-at-point 'word))
+                      (t nil))))
+    (if regexp
+        (progn
+          (add-to-history 'regexp-history regexp)
+          (occur regexp 0))
+      (apply 'occur (occur-read-primary-args)))))
+
 ;============================= File Associations =============================;
 (setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.world" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cu" . c-mode) auto-mode-alist))
 
-;=============================== KEY BINDINGS ================================;
+;============================ Global key bindings ============================;
 ;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
 (global-set-key (kbd "<f6>") 'delete-trailing-whitespace)
 (global-set-key (kbd "<f7>") 'magit-status)
@@ -177,6 +196,16 @@ width of the header"
 (global-set-key (kbd "M-<right>") 'windmove-right)
 (global-set-key (kbd "M-<up>")    'windmove-up)
 (global-set-key (kbd "M-<down>")  'windmove-down)
+
+(global-set-key (kbd "C-.") 'occur-dwim)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-'") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-;") 'mc/mark-previous-like-this)
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 
 ;=================================== C/C++ ===================================;
 (require 'cc-mode)
