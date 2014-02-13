@@ -59,7 +59,6 @@
 (defun vc-svn-registered (file) nil)
 (defun vc-git-registered (file) nil)
 
-(add-to-list 'auto-mode-alist '("\\.h$" . dummy-h-mode))
 (autoload 'dummy-h-mode "dummy-h-mode" "Dummy H mode" t)
 
 ;============================= CUSTOM FUNCTIONS ==============================;
@@ -145,19 +144,6 @@ width of the header"
      "Window '%s' is normal")
    (current-buffer)))
 
-;================================ Compilation ================================;
-(setq compilation-scroll-output t)
-(setq compilation-auto-jump-to-first-error t)
-(setq compilation-skip-threshold 2)
-
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-
-;================================ occur-dwim =================================;
 (require 'thingatpt)
 (defun occur-dwim (arg)
   "Do What I Mean for `occur'. Requires 'thingatpt.
@@ -176,10 +162,23 @@ word at point. Otherwise behaves like occur."
           (occur regexp 0))
       (apply 'occur (occur-read-primary-args)))))
 
+;================================ Compilation ================================;
+(setq compilation-scroll-output t)
+(setq compilation-auto-jump-to-first-error t)
+(setq compilation-skip-threshold 2)
+
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;============================= File Associations =============================;
 (setq auto-mode-alist (cons '("\\.launch" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.world" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cu" . c-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.h$" . dummy-h-mode))
 
 ;============================ Global key bindings ============================;
 ;http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
