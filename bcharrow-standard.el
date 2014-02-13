@@ -61,6 +61,9 @@
 
 (autoload 'dummy-h-mode "dummy-h-mode" "Dummy H mode" t)
 
+(require 'dtrt-indent)
+(dtrt-indent-mode)
+
 ;============================= CUSTOM FUNCTIONS ==============================;
 ;; Fullscreen editing
 (defun fullscreen ()
