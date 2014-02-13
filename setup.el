@@ -18,9 +18,7 @@
     (package-install p)))
 
 ; Update / remove old packages
-(package-menu-mode)
-(setq buffer-read-only nil)
+(package-list-packages)
 (package-menu-mark-upgrades)
 (package-menu-mark-obsolete-for-deletion)
 (package-menu-execute)
-(lisp-mode)
